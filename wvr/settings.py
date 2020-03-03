@@ -151,14 +151,14 @@ LANGUAGES_DICT = dict(LANGUAGES)
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
+
+
 LANGUAGE_COOKIE_NAME = 'override_language_code'
 YN = ("yes", "no")
 TRANS_YN = (_("yes"), _("no"))
-SITE_CONFIG = (
-    (LANGUAGE_COOKIE_NAME, LANGUAGES_DICT.keys(), LANGUAGES_DICT.keys()),
-    ('use_translation', YN, TRANS_YN),
-    ('country_redirect', YN, TRANS_YN),
-)
+CONFIGURABLES = ('use_translation', 'country_redirect')
+
+
 BLOG_POST_EDITOR_WIDGET = 'utils/widgets/text_input_with_blob_image.html'
 UTILS_BACKGROUND_PATH = os.path.join(BASE_DIR, 'utils/background_images/')
 UTILS_PUBLIC_UTILS = (

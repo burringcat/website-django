@@ -94,10 +94,8 @@ def timestamp_str():
 
 
 def get_site_config():
-    return (
+    return [
         (settings.LANGUAGE_COOKIE_NAME,
          settings.LANGUAGES_DICT.keys(),
          settings.LANGUAGES_DICT.keys()),
-        ('use_translation', settings.YN, settings.TRANS_YN),
-        ('country_redirect', settings.YN, settings.TRANS_YN),
-    )
+    ] + [(c, settings.YN, settings.TRANS_YN) for c in settings.CONFIGURABLES]
