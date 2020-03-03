@@ -8,6 +8,7 @@ from django.conf import settings
 from django.shortcuts import redirect, render, reverse
 from utils.utils.iter_file_content import \
     iter_file_content, iter_file_to_blob_src
+from utils.utils.misc import get_site_config
 
 
 
@@ -26,7 +27,8 @@ def site_config(request):
     referer = request.GET.get('referer', '/')
     referer = urlparse(referer).netloc or referer
     resp = redirect(referer)
-    for conf, val_range, text in settings.SITE_CONFIG:
+    sc = get_site_config()
+    for conf, val_range, text in sc:
         val = request.POST.get(conf, request.GET.get(conf))
         if val in val_range:
             resp.set_cookie(conf, val)

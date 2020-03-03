@@ -82,7 +82,7 @@ def gen_random_str(length: int):
     return str(k, encoding='utf8')
 
 
-def md2h5(md, extensions=('fenced_code', ), context=None):
+def md2h5(md, extensions=('fenced_code',), context=None):
     result = markdown.markdown(md, output_format='html5', extensions=extensions)
     if context and isinstance(context, dict):
         result = Template(result).render(Context(context))
@@ -91,3 +91,13 @@ def md2h5(md, extensions=('fenced_code', ), context=None):
 
 def timestamp_str():
     return str(time.time()).replace('.', '')
+
+
+def get_site_config():
+    return (
+        (settings.LANGUAGE_COOKIE_NAME,
+         settings.LANGUAGES_DICT.keys(),
+         settings.LANGUAGES_DICT.keys()),
+        ('use_translation', settings.yn, settings.trans_yn),
+        ('country_redirect', settings.yn, settings.trans_yn),
+    )
