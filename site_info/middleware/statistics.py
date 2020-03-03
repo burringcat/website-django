@@ -1,5 +1,8 @@
+from django.conf import settings
+
 from django.db.utils import IntegrityError
 from django.utils import timezone
+
 from site_info.models import Visitor
 class StatisticsMiddleware:
     # after IP and Country middleware
@@ -12,6 +15,8 @@ class StatisticsMiddleware:
             return response
         country = request.META.get('COUNTRY')
         ip = request.META['IP']
+        if settings.DEBUG is True:
+            print('statistics middleware', ip, country)
         if not country or not ip:
             return response
         if Visitor.objects.filter(visit_date=timezone.now()).filter(ip=ip).count() != 0:
