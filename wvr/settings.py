@@ -155,7 +155,7 @@ LANGUAGE_COOKIE_NAME = 'override_language_code'
 yn = ("yes", "no")
 trans_yn = (_("yes"), _("no"))
 SITE_CONFIG = (
-    (LANGUAGE_COOKIE_NAME, LANGUAGES_DICT.keys(), LANGUAGES_DICT.keys()),
+    (LANGUAGE_COOKIE_NAME, dict(LANGUAGES).keys(), dict(LANGUAGES).keys()),
     ('use_translation', yn, trans_yn),
     ('country_redirect', yn, trans_yn),
 )
