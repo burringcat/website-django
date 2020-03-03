@@ -152,12 +152,12 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 LANGUAGE_COOKIE_NAME = 'override_language_code'
-yn = ("yes", "no")
-trans_yn = (_("yes"), _("no"))
+YN = ("yes", "no")
+TRANS_YN = (_("yes"), _("no"))
 SITE_CONFIG = (
     (LANGUAGE_COOKIE_NAME, LANGUAGES_DICT.keys(), LANGUAGES_DICT.keys()),
-    ('use_translation', yn, trans_yn),
-    ('country_redirect', yn, trans_yn),
+    ('use_translation', YN, TRANS_YN),
+    ('country_redirect', YN, TRANS_YN),
 )
 BLOG_POST_EDITOR_WIDGET = 'utils/widgets/text_input_with_blob_image.html'
 UTILS_BACKGROUND_PATH = os.path.join(BASE_DIR, 'utils/background_images/')

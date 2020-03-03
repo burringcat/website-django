@@ -98,6 +98,6 @@ def get_site_config():
         (settings.LANGUAGE_COOKIE_NAME,
          settings.LANGUAGES_DICT.keys(),
          settings.LANGUAGES_DICT.keys()),
-        ('use_translation', settings.yn, settings.trans_yn),
-        ('country_redirect', settings.yn, settings.trans_yn),
+        ('use_translation', settings.YN, settings.TRANS_YN),
+        ('country_redirect', settings.YN, settings.TRANS_YN),
     )
