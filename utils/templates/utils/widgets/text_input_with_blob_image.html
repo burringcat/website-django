@@ -1,0 +1,85 @@
+{#<br><br>#}
+{#<form action="{% url 'admin-i2b' %}">#}
+{#    <input type="file" id="{{ widget.name }}-img-file" name="file"><br>#}
+{#    <input type="submit" id="{{ widget.name }}-img-btn" value="Upload Image"/>#}
+{#</form>#}
+{#<br>#}
+{#<button id="{{ widget.name }}-toggle-blob-btn" >#}
+{#    Toggle show blob#}
+{#</button>#}
+{#<script>#}
+{#    function genUUID() {#}
+{#        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {#}
+{#            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);#}
+{#            return v.toString(16);#}
+{#        });#}
+{#    }#}
+{##}
+{#    var showBlob = true;#}
+{#    var blobCache = {};#}
+{#    document.getElementById("{{ widget.name }}-toggle-blob-btn").#}
+{#    addEventListener("click", function (event) {#}
+{#        event.preventDefault();#}
+{#        toggleShowBlob("{{ widget.name }}-widget");#}
+{#    });#}
+{#    function toggleShowBlob(targetId) {#}
+{#        const target = document.querySelector('#' + targetId);#}
+{#        if(blobCache[targetId] === undefined) {#}
+{#            blobCache = Object.assign(blobCache, {targetId: {}});#}
+{#        }#}
+{#        if (showBlob) {#}
+{#            var parser = new DOMParser();#}
+{#            var htmlDoc = parser.parseFromString(target.value, 'text/html');#}
+{#            var images = htmlDoc.querySelectorAll('img[class="article-img"]');#}
+{#            for (image of images) {#}
+{#                var uid = genUUID();#}
+{#                var src = image.getAttribute('src');#}
+{#                blobCache[targetId] =#}
+{#                    Object.assign({[uid]: src}, blobCache[targetId]);#}
+{#                target.value = target.value.replace(src, uid)#}
+{#            }#}
+{#            showBlob = false;#}
+{#        } else {#}
+{#            console.log(blobCache[targetId]);#}
+{#            for (const uid in blobCache[targetId]) {#}
+{#                console.log(uid);#}
+{#                target.value = target.value.replace(uid, blobCache[targetId][uid])#}
+{#            }#}
+{#            blobCache[targetId] = {};#}
+{#            showBlob = true;#}
+{#        }#}
+{##}
+{#    }#}
+{##}
+{#    function uploadImage(targetId, callback) {#}
+{#        var xhttp = new XMLHttpRequest();#}
+{#        var formData = new FormData();#}
+{#        var fileInput = document.getElementById(#}
+{#            '{{ widget.name }}-img-file'#}
+{#        );#}
+{#        formData.append('file', fileInput.files[0], fileInput.files[0].name);#}
+{#        xhttp.onreadystatechange = function () {#}
+{#            if (this.readyState === 4 && this.status === 200) {#}
+{#                callback(targetId, this.responseText);#}
+{#                fileInput.value = null;#}
+{#            }#}
+{#        };#}
+{#        xhttp.open("POST", "{% url 'admin-i2b' %}", true);#}
+{#        xhttp.send(formData);#}
+{#    }#}
+{##}
+{#    function writeToTarget(targetId, result) {#}
+{#        const target = document.querySelector('#' + targetId);#}
+{#        resultHTML = '<img class="article-img" src="' + result + '"/>';#}
+{#        target.value += '\n\n\n' + resultHTML + '\n\n\n';#}
+{#    }#}
+{##}
+{#    document.getElementById("{{ widget.name }}-img-btn").addEventListener("click", function (event) {#}
+{#        event.preventDefault();#}
+{#        uploadImage("{{ widget.name }}-widget", writeToTarget);#}
+{#    });#}
+{#</script>#}
+<br>
+<textarea name="{{ widget.name }}" id="{{ widget.name }}-widget" style="width: 100%;" rows="50">
+{% if widget.value %}{{ widget.value }}{% endif %}
+</textarea>

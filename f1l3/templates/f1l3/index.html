@@ -1,0 +1,21 @@
+{% extends 'common/base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'F1L3' %}| {% endblock %}
+{% block body %}
+<div class="general-board">
+    <h1>{% trans 'F1L3 File Hosting' %}</h1>
+<form class="pure-form" method="POST" enctype="multipart/form-data"
+      action="{% url 'f1l3-upload' %}">
+
+    <fieldset class="pure-group">
+        <input id="upload-input"
+               class="pure-button pure-input-2-3"
+               name="file"
+               data-max-size="{{ settings.F1L3_MAX_FILE_SIZE_MB }}MiB"
+               type="file">
+    </fieldset>
+    <button type="submit" class="pure-button pure-input-2-3">{% trans 'Submit' %}</button>
+</form>
+</div>
+
+{% endblock %}

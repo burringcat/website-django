@@ -1,0 +1,25 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans 'Newsletters' %}|{% endblock %}
+{% block head_extra %}
+    <style>
+        .newsletter a {
+            text-decoration: none;
+            color: #ff46d2;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    {{ block.super }}
+    <div class="general-board">
+        <h1>{% trans 'Newsletters' %}</h1>
+    </div>
+    {% for n in newsletters %}
+        <div class="general-board">
+            <div class="article newsletter">
+                {{ n.content|safe }}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

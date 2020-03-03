@@ -1,0 +1,29 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans 'Stats' %}|{% endblock %}
+{% block body %}
+    {{ block.super }}
+    <div class="general-board">
+        <h1>{% trans 'Stats' %}</h1>
+    </div>
+    <div class="general-board">
+        <h2>{% trans 'Visitors Today' %}</h2>
+        {% for c in countries %}
+	    {% if not request.user.is_superuser %}
+            {% if c.visitors_today_count > 0 %}
+                <img src="https://www.countryflags.io/{{ c.code }}/shiny/64.png" alt="">
+                {{ c.name }}: {{c.visitors_today_count}}
+            {% endif %}
+	    {% else %}
+	    {% if c.real_visitors_today_count > 0 %}
+                <img src="https://www.countryflags.io/{{ c.code }}/shiny/64.png" alt="">
+                {{ c.name }}: {{c.real_visitors_today_count}}
+	    {% endif %}
+	    {% endif %}
+
+            <br>
+        {% endfor %}
+
+    </div>
+{% endblock %}

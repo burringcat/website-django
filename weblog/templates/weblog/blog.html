@@ -1,0 +1,44 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{{ blog.blog_name }} |{% endblock %}
+{% block body %}
+    {{ block.super }}
+    <div class="general-board">
+        <h1 style="text-align: center">
+            {{ blog.blog_name }}
+        </h1>
+        {% for p in posts %}
+            <h4>
+                <a style="
+                    width: 100vw;
+                    color: #ff46d2;
+                    font-size: 1.1em;
+                    display: block;
+                    text-decoration: none
+                    "
+                   href="{% url 'post' p.slug %}">
+                    {{ p.title }}
+                    {% if p.passhash %}
+                        {% trans '(password protected)' %}
+                    {% endif %} - {{ p.posted }}</a>
+            </h4>
+        {% endfor %}
+        <hr>
+        <div style="text-align: center">
+            [
+            {% for page in page_range %}
+                <a href="{% url 'blog' blog.slug %}?page={{ page }}"
+                   style="text-decoration: none;color:
+                {% if page == current_page %}
+                    #ff46d2
+                {% else %}
+                    #00ff00
+                {% endif %}">
+                {{ page }}
+                </a>
+            {% endfor %}
+            ]
+        </div>
+    </div>
+{% endblock %}

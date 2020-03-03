@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %} {% block title_suffix %}{{ settings.SITE_TITLE }}{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
+    {% include 'common/css.html' %}
+    {% block head_extra %}
+    {% endblock %}
+</head>
+<body style="background: url({% block body_bg_url %}'{% url "random-bg" %}'{% endblock %}) no-repeat center center fixed;   -webkit-background-size: cover;  -moz-background-size: cover;  -o-background-size: cover;  background-size: cover;">
+{% block top_bar_prepend %}
+{% include 'common/top_bar_login_empty.html' %}
+{% endblock %}
+{% block top_bar %}
+{% include 'common/top_bar.html' %}
+{% endblock %}
+{% block body %}
+{% endblock %}
+</body>
+</html>

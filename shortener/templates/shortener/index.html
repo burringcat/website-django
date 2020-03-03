@@ -1,0 +1,33 @@
+{% extends 'common/base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'Shortener' %}| {% endblock %}
+{% block body %}
+    {% if created %}
+<div class="general-board">
+<h1>{% trans 'Created:' %}</h1>
+    <a class="cyberpunk-anchor"
+       href="{% url 'redirect-to' %}?uid={{ created.unique_id }} %}">
+        {% url 'redirect-to' %}?uid={{ created.unique_id }} %}
+    </a>
+</div>
+    {% endif %}
+<div class="general-board">
+    <h1>{% trans 'URL Shortener' %}</h1>
+<form class="pure-form" method="POST" action="{% url 'shortener-action' 'new_url' %}">
+    <fieldset class="pure-group">
+        <textarea class="pure-input-2-3"
+                  placeholder="{% trans 'Your url' %}"
+                  name="url"></textarea>
+        <textarea class="pure-input-2-3"
+                  placeholder="{% trans 'Your notes(optional)' %}"
+                  name="notes"></textarea>
+    <label for="is_encrypted_checkbox" class="pure-checkbox">
+        <input id="is_encrypted_checkbox" type="checkbox" name="is_encrypted" value="yes">
+        {% trans 'Should the shortened url be encrypted(obfuscated)?' %}
+    </label>
+    </fieldset>
+    <button type="submit" class="pure-button pure-input-2-3">{% trans 'Submit' %}</button>
+</form>
+</div>
+
+{% endblock %}

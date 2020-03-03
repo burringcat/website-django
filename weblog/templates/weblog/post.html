@@ -1,0 +1,33 @@
+{% extends 'common/base.html' %}
+{% load i18n %}
+{% block title %}{{ post.title }} |{% endblock %}
+{% block body %}
+    {{ block.super }}
+    <div class="general-board" style="font-size: 1.2em">
+        <h1 style="text-align: center">{{ post.title }}</h1>
+        <h4 style="text-align: center">
+            {% trans 'Posted at' %} {{ post.posted }}
+        </h4>
+        <h4 style="text-align: center">
+            {% if post.updated and post.updated != post.posted %}
+                {% trans 'Updated at' %} {{ post.updated }}
+            {% endif %}
+        </h4>
+        <div class="article">
+            {{ post.content_rendered| safe }}
+        </div>
+        <hr>
+        <div class="article">
+        <span>{% trans 'Topics:' %} </span>
+        [{% for t in post.original.topic.all %}
+            <a href="{% url 'topic' t.name %}"
+               style="text-decoration: none; color: #00ff00">
+            {{ t.name }}
+            </a>
+            {% if not forloop.last %}
+                /
+            {% endif %}
+        {% endfor %}]
+        </div>
+    </div>
+{% endblock %}

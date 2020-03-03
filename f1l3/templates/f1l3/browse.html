@@ -1,0 +1,28 @@
+{% extends 'common/base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'F1L3' %}| {% endblock %}
+{% block head_extra %}
+<style>
+div.file {
+    font-size: 1.3em;
+}
+</style>
+{% endblock %}
+{% block body %}
+<div class="general-board">
+    <h1>{% trans 'F1L3 File Hosting' %}</h1>
+{% for file, is_dir, url in files %}
+    <div class="file">
+        <a {% if not is_dir %}
+            class="cyberpunk-anchor"
+        {% else %}
+            style="color: #f2f2f2"
+           {% endif %}
+           href="{{ url }}">
+        {{ file }}
+        </a>
+    </div>
+{% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'common/base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'F1L3' %}| {% endblock %}
+{% block body %}
+
+<div class="board">
+<h1>{% trans 'Uploaded:' %}</h1>
+    <a class="cyberpunk-anchor"
+       href="{{ url }}">
+        {{ url }}
+    </a>
+    <br>
+    <a href='{% url 'f1l3' %}' class="pure-button pure-input-2-3">{% trans 'Back' %}</a>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,11 @@
+.idea
+__pycache__
+db.sqlite3
+.venv
+.env
+static_root
+static
+wvr/pluto
+wvr/local_settings/local.py
+media/
+!media/.gitkeep

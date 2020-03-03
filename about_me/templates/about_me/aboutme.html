@@ -1,0 +1,37 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans 'About' %}|{% endblock %}
+{% block head_extra %}
+    <style>
+        body {
+            background-color: black;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h1, h2, h3, h4, h5 {
+            color: #00ff00;
+        }
+
+        a {
+            text-decoration: none;
+            color: #33cccc;
+        }
+    </style>
+{% endblock %}
+{% block top_bar_prepend %}
+{% endblock %}
+
+{% block body %}
+    {{ block.super }}
+    <br>
+    <div class="general-board article">
+        {{ aboutme_html|safe }}
+        <h1>
+            <audio src="{{ settings.ABOUT_ME_AUDIO_URL }}" loop controls></audio>
+        </h1>
+    </div>
+{% endblock %}

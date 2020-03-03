@@ -1,0 +1,50 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}Curriculum Vitae|{% endblock %}
+{% block head_extra %}
+    <style>
+        body {
+            background-color: black;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h1, h2, h3, h4, h5 {
+            color: #00ff00;
+        }
+
+        a {
+            text-decoration: none;
+            color: #33cccc;
+        }
+    </style>
+{% endblock %}
+{% block body_bg_url %}
+    '{% static 'images/codg2.jpg' %}'
+{% endblock %}
+{% block top_bar_prepend %}
+{% endblock %}
+
+{% block body %}
+    {{ block.super }}
+    <br>
+    {% if settings %}
+    <div class="general-board article" style="font-size: 1.5em">
+        [{% for code, name in settings.LANGUAGES_DICT.items %}
+        <a style="text-decoration: none; color: #00ff00"
+           href="{% url 'conf' %}?{{ settings.LANGUAGE_COOKIE_NAME }}={{ code }}&referer={% url 'cv' %}">
+            {{ name }}
+        </a>
+        {% if not forloop.last %}
+            /
+        {% endif %}
+    {% endfor %}]
+    </div>
+    {% endif %}
+    <div class="general-board article">
+        {{ cv_html|safe }}
+    </div>
+{% endblock %}

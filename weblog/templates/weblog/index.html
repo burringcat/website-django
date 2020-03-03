@@ -1,0 +1,35 @@
+{% extends 'common/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans 'Blog Index' %} |{% endblock %}
+{% block head_extra %}
+    <style>
+    body {
+        background-color: #000000;
+    }
+    </style>
+{% endblock %}
+{% block body %}
+{{ block.super }}
+    <img src="{% static 'images/yin-yang.png' %}" alt="陰陽 Yin Yang" width="300px" height="300px"
+         style="display: block; margin: 0 auto;">
+    <div class="general-board">
+    {% if blogs.count == 0 %}
+        <h5>{% trans 'There is no blog here yet. Please check later! Thanks!' %}</h5>
+    {% else %}
+        <h4>{% trans 'There are currently' %} {{ blogs.count }} {% trans 'blogs' %}.</h4>
+        {% for blog in blogs %}
+            <a style="width: 100vw;
+                    background: url({% static "images/blog-btn-default.jpg" %}) no-repeat center center fixed;
+                    color: #ff46d2;
+                    font-size: 1.8em;
+                    display: block;
+                    text-decoration: none"
+               href="{% url 'blog' blog.slug %}"
+            >
+            {{ blog.blog_name }}
+            </a>
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endblock %}

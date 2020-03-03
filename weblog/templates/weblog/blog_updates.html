@@ -1,0 +1,10 @@
+{% load i18n %}
+{% if new_posts %}
+<h2>{% trans 'Blog Update:' %}{{ blog.blog_name }}</h2>
+{% endif %}
+{% for post in new_posts %}
+    <a href="https://www.odinfinch.xyz{% url 'post' post.slug %}">
+    {{ post.title }} - {{ post.posted }}
+    </a>
+    <br>
+{% endfor %}

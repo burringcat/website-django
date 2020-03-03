@@ -1,0 +1,14 @@
+{% extends 'common/base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'Links' %}| {% endblock %}
+{% block body %}
+<div class="general-board">
+    <h1 style="text-align: center">{% trans 'Public' %}</h1>
+    {% for u in public %}
+    <a class="cyberpunk-anchor" style="font-size: 1.4em" href="{{ u.url }}">{{ u.title }}</a><br>
+    {% if not forloop.last %}
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'common/base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'Utilities' %}| {% endblock %}
+{% block body %}
+<div class="board">
+    <h1>{% trans 'Here are some utilities.' %}</h1>
+    [
+    {% for n in settings.UTILS_PUBLIC_UTILS %}
+    <a class="cyberpunk-anchor" href="{% url n %}">{{n}}</a>
+    {% if not forloop.last %}
+    /
+    {% endif %}
+    {% endfor %}
+    ]
+</div>
+
+{% endblock %}

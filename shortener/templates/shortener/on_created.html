@@ -1,0 +1,17 @@
+{% extends 'common/base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'Shortener' %}| {% endblock %}
+{% block body %}
+
+<div class="board">
+<h1>{% trans 'Created:' %}</h1>
+    <a class="cyberpunk-anchor"
+       href="{% url 'redirect-to' %}?uid={{ created.unique_id }}">
+        {{ settings.PRIMARY_HOST_URL }}{% url 'redirect-to' %}?uid={{ created.unique_id }}
+    </a>
+    <br>
+    <a href='{% url 'shortener' %}' class="pure-button pure-input-2-3">{% trans 'Back' %}</a>
+</div>
+
+
+{% endblock %}
