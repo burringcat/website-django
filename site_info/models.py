@@ -1,5 +1,6 @@
 import datetime
 import time
+import random
 
 from django.utils import timezone
 from django.conf import settings
@@ -90,3 +91,19 @@ def clear_old_visitors(sender, instance, **kwargs):
         cleared = SiteInfo.get('old_visitor_data_cleared')
         cleared.value = time.time()
         cleared.save()
+
+
+class Quote(models.Model):
+    content = models.TextField()
+    by = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return str(self.content) + ' - ' + str(self.by)
+
+    @classmethod
+    def random_quote(cls):
+        quotes_count = cls.objects.count()
+        if quotes_count == 0:
+            return None
+        pk = random.choice(range(quotes_count)) + 1
+        return cls.objects.get(pk=pk)

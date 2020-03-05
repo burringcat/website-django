@@ -5,28 +5,32 @@
 {% endblock %}
 {% block body %}
     {{ block.super }}
+
     <div style="text-align: center">
         <img src="{% static 'images/ciel.png' %}" alt="Ciel Phantomhive" width="300px" height="300px"
              style="margin: 0 auto">
     </div>
     <div class="board">
         <h1>Sól's Shadow</h1>
-    <div style="font-size: 1.3em">
-        {% trans 'This is my personal website. You can listen to my song list here!' %}
-    </div>
-        <audio src="{{settings.LANDING_PAGE_AUDIO_URL}}" controls autoplay preload="none"></audio>
+        <div style="font-size: 1.3em">
+            {% trans 'This is my personal website. You can listen to my song list here!' %}
+        </div>
+        <audio src="{{ settings.LANDING_PAGE_AUDIO_URL }}" controls autoplay preload="none"></audio>
+
         <h3>{% trans 'Change your language:' %} </h3>
         <div>
             [{% for code, name in settings.LANGUAGES_DICT.items %}
-                <a style="text-decoration: none; color: #00ff00"
-                   href="{% url 'conf' %}?{{settings.LANGUAGE_COOKIE_NAME}}={{ code }}">
-                    {{ name }}
-                </a>
+            <a style="text-decoration: none; color: #00ff00"
+               href="{% url 'conf' %}?{{ settings.LANGUAGE_COOKIE_NAME }}={{ code }}">
+                {{ name }}
+            </a>
             {% if not forloop.last %}
-            /
+                /
             {% endif %}
-            {% endfor %}]
+        {% endfor %}]
         </div>
-        <h3>{% trans 'Server timezone:'%}{{ settings.TIME_ZONE }}</h3>
+        <h3>{% trans 'Server timezone:' %}{{ settings.TIME_ZONE }}</h3>
+
+
     </div>
 {% endblock %}
