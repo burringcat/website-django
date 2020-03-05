@@ -1,0 +1,12 @@
+{% extends 'common/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans '404 Not Found' %}| {% endblock %}
+{% block body %}
+<div class="general-board">
+    <h1>{% trans '404' %}</h1>
+    <h2>Hmm? ExCusE mE? Just what do you think you are doing?</h2>
+    <img src="{% static 'images/404.jpg' %}" alt="">
+</div>
+
+{% endblock %}
