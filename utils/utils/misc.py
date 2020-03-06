@@ -1,9 +1,12 @@
+import os
 import time
 import subprocess
+from threading import Timer
 import uuid
 from base64 import b64encode
 import markdown
 from posix import urandom
+import subprocess
 from unidecode import unidecode
 from django.contrib.gis.geoip2 import GeoIP2
 from django.utils.text import slugify as dj_slugify
@@ -99,3 +102,15 @@ def get_site_config():
          settings.LANGUAGES_DICT.keys(),
          settings.LANGUAGES_DICT.keys()),
     ] + [(c, settings.YN, settings.TRANS_YN) for c in settings.CONFIGURABLES]
+
+
+
+def is_up(host):
+    kill = lambda process: process.kill()
+    devnull = open(os.devnull, 'w')
+    cmd = ["ping", "-c", "1", host]
+    exit_val = subprocess.Popen(cmd,
+                              stdout=devnull,
+                              stderr=subprocess.STDOUT).returncode
+    return exit_val == 0
+

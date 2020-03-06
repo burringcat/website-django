@@ -3,12 +3,12 @@ from urllib.parse import urlparse
 from random import choice
 from mimetypes import guess_type
 from django.views.decorators.csrf import csrf_exempt
-from django.http import StreamingHttpResponse, HttpResponse
+from django.http import StreamingHttpResponse, HttpResponse, JsonResponse
 from django.conf import settings
 from django.shortcuts import redirect, render, reverse
 from utils.utils.iter_file_content import \
     iter_file_content, iter_file_to_blob_src
-from utils.utils.misc import get_site_config
+from utils.utils.misc import get_site_config, is_up
 
 
 
@@ -47,3 +47,6 @@ def utils(request):
 
 def url_shortener(request):
     return redirect(reverse('shortener'))
+
+def test_is_up(request, url):
+    return JsonResponse({'is_up': is_up(url)})
