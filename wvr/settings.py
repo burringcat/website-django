@@ -221,6 +221,8 @@ TOPBAR_F1L3 = True
 # set to empty or None to disable the following buttons
 TOPBAR_GIT_SITE = 'https://github.com/burringcat'
 TOPBAR_SOCIAL_SITE = 'https://social.0u0.fun'
+TOPBAR_CLOUD_SITE = ''
+
 
 try:
     from wvr.local_settings.local import *
