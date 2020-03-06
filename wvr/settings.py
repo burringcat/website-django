@@ -218,9 +218,9 @@ F1L3_URL = os.path.join(MEDIA_URL, 'f1l3/')
 SITE_TITLE = 'OvO'
 
 TOPBAR_F1L3 = True
-# TOPBAR_GIT_SITE: set to empty or None to disable this button
+# set to empty or None to disable the following buttons
 TOPBAR_GIT_SITE = 'https://github.com/burringcat'
-
+TOPBAR_SOCIAL_SITE = 'https://social.0u0.fun'
 
 try:
     from wvr.local_settings.local import *

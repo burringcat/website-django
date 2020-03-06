@@ -22,6 +22,10 @@
     <a href="{{ settings.TOPBAR_GIT_SITE }}">{% trans 'git' %} </a>
     /
     {% endif %}
+    {% if settings.TOPBAR_SOCIAL_SITE %}
+    <a href="{{ settings.TOPBAR_SOCIAL_SITE }}">{% trans 'Social' %} </a>
+    /
+    {% endif %}
     <a href="{% url 'about-me' %}">{% trans 'About' %} </a>
     {% if request.user.is_superuser %}
     /
