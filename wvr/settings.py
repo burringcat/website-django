@@ -223,6 +223,8 @@ TOPBAR_GIT_SITE = 'https://github.com/burringcat'
 TOPBAR_SOCIAL_SITE = 'https://social.0u0.fun'
 TOPBAR_CLOUD_SITE = ''
 
+TOPBAR_EXTRA_SITES = ()
+TOPBAR_EXTRA_SITES_DICT = dict(TOPBAR_EXTRA_SITES)
 
 try:
     from wvr.local_settings.local import *

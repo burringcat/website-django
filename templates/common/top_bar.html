@@ -30,6 +30,10 @@
     <a href="{{ settings.TOPBAR_CLOUD_SITE }}">{% trans 'Cloud' %} </a>
     /
     {% endif %}
+    {% for name, link in settings.TOPBAR_EXTRA_SITES_DICT.items %}
+    <a href="{{ link }}">{% trans name %} </a>
+    /
+    {% endfor %}
     <a href="{% url 'about-me' %}">{% trans 'About' %} </a>
     {% if request.user.is_superuser %}
     /
