@@ -12,3 +12,6 @@ django-ipware
 WeasyPrint
 Unidecode
 requests
+channels
+daphne
+Twisted[tls,http2]

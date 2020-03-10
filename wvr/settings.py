@@ -33,6 +33,7 @@ if DEBUG is True:
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -87,6 +88,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'wvr.wsgi.application'
+
+ASGI_APPLICATION = 'wvr.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
