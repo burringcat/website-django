@@ -38,13 +38,15 @@ resize: none
             {% endif %}
         {% endfor %}]
         </div>
-        <h3>{% trans 'Add a comment(login needed)' %} </h3>
+        {% if not request.user.is_anonymous %}
+        <h3>{% trans 'Add a comment' %} </h3>
         <form class="pure-form" method='POST' action='{% url "add-comment" post.original.slug %}'>
             <fieldset class="pure-group">
                 <textarea class="pure-input-3-4" placeholder="{% trans "hmm, what's on your mind?" %}" name='content'></textarea>
             </fieldset>
             <button type="submit" class="pure-button pure-input-2-4">{% trans 'Comment!' %}</button>
         </form>
+        {% endif %}
         <h3>{% trans 'Comments' %}</h3>
         <div class="general-board">
             {% for c in post.original.comments.all %}
