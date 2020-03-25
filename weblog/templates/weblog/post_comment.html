@@ -1,7 +1,8 @@
 {% load i18n %}
 <div class='comment'>
-    {{ c.posted_by }} {% if c.parent_comment %} <code>--></code> {{ c.parent_comment.posted_by }} {% endif %}
+    {{ c.posted_by }}
     <span style='color: #33cccc'>{% trans 'says' %}</span>
+    {% if c.parent_comment %} <code>--></code> {{ c.parent_comment.posted_by }} {% endif %}
     <br>
     <br>
     {{ c.content }}
