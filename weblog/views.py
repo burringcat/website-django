@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseNotFound
+from django.http import HttpResponseNotFound, HttpResponseBadRequest
 from django.core.paginator import Paginator
 from .models import Blog, BlogPost, Topic, Comment
 from utils.utils.passhash_tools import check_password
@@ -58,16 +58,32 @@ def post(request, post_slug):
 def add_comment(request, post_slug):
     post = BlogPost.objects.filter(is_published=True, slug=post_slug).first()
     if not post:
-        return HttpResponseNotFound()
+        return HttpResponseNotFound('404 post not found')
     redirect_resp = redirect(reverse('post', kwargs={'post_slug': post.slug}))
-    content = request.POST.get('content')
-    content = str(content).strip()
+    content = request.POST.get('content', '').strip()
     if not content:
         return redirect_resp
-    Comment.objects.create(content=content, posted_by=request.user, blog_post=post)
+    parent_comment_id = request.POST.get('parent_comment_id')
+    if parent_comment_id is None:
+        parent_comment = None
+    else:
+        try:
+            parent_comment_id = int(parent_comment_id)
+        except:
+            return HttpResponseBadRequest('400 bad parent comment id')
+        parent_comment = Comment.objects.filter(pk=parent_comment_id).first()
+        if parent_comment is None:
+            return HttpResponseNotFound('404 parent comment not found')
+    Comment.objects.create(content=content, posted_by=request.user, blog_post=post, parent_comment=parent_comment)
     return redirect_resp
 
-
+@login_required
+def reply_page(request, post_slug, parent_comment_id):
+    comment = Comment.objects.filter(pk=parent_comment_id).first()
+    post = BlogPost.objects.filter(slug=post_slug).first()
+    if comment is None or post is None:
+        return redirect(reverse('post', kwargs={'post_slug': post.slug}))
+    return render(request, 'weblog/reply.html', {'post': post, 'comment': comment})
 
 def enter_password(request, post_slug):
     return render(request, 'weblog/enter_password.html',

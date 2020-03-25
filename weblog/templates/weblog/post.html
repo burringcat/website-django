@@ -46,21 +46,17 @@ resize: none
             </fieldset>
             <button type="submit" class="pure-button pure-input-2-4">{% trans 'Comment!' %}</button>
         </form>
+        {% else %}
+        <h3>{% trans 'Log in to add a comment' %}
         {% endif %}
         <h3>{% trans 'Comments' %}</h3>
         <div class="general-board">
             {% for c in post.original.comments.all %}
-            <div class='comment'>
-                {{ c.posted_by }}
-                <span style='color: #33cccc'>{% trans 'says' %}</span>
-                {{ c.content }}
-                <br>
-                <p><span style='color: #33cccc'>{% trans 'at' %}</span> {{ c.created }} </p>
-                {#<br>#}
-                {#<a class='comment-reply-btn' href='asdas'>{% trans 'Reply' %}</a>#}
-            </div>
+            {% if c.parent_comment is None %}
+            {% include "weblog/post_comment.html" with c=c %}
+            {% endif %}
             <br>
             {% endfor %}
        </div>
     </div>
-{% endblock %}
+    {% endblock %}

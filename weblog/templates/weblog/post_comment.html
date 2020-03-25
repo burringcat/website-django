@@ -1,0 +1,16 @@
+{% load i18n %}
+<div class='comment'>
+    {{ c.posted_by }} {% if c.parent_comment %} <code>--></code> {{ c.parent_comment.posted_by }} {% endif %}
+    <span style='color: #33cccc'>{% trans 'says' %}</span>
+    {{ c.content }}
+    <br>
+    <p><span style='color: #33cccc'>{% trans 'at' %}</span> {{ c.created }} </p>
+    {% if not request.user.is_anonymous %}
+    <br>
+    <a class='comment-reply-btn' href='{% url 'add-comment-reply-page' post.original.slug c.pk %}'>{% trans 'Reply' %}</a>
+    {% endif %}
+    {% for r in c.replies.all %}
+    {% include "weblog/post_comment.html" with c=r %}
+    {% endfor %}
+</div>
+

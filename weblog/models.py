@@ -120,6 +120,8 @@ class BlogPost(models.Model):
             return self.language.language_code
 
 class Comment(DateTimeMixin):
+    class Meta:
+        ordering = ["-created"]
     blog_post = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='comments')
     content = models.TextField()
     posted_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
