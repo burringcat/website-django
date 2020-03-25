@@ -9,5 +9,6 @@ class BlogPostAdmin(admin.ModelAdmin):
 admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(BlogPostTranslation)
 admin.site.register(Topic)
+admin.site.register(Comment)
 
 # Register your models here.

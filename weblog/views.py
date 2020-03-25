@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, reverse
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseNotFound
 from django.core.paginator import Paginator
-from .models import Blog, BlogPost, Topic
+from .models import Blog, BlogPost, Topic, Comment
 from utils.utils.passhash_tools import check_password
 from utils.utils.misc import gen_page_range
 from django.utils.translation import get_language
@@ -52,6 +53,20 @@ def post(request, post_slug):
             return redirect(reverse('enter-password', kwargs={'post_slug': post_slug}))
     return render(request, 'weblog/post.html',
                   context={'post': post.translated_dict_obj(get_language() or 'en')})
+
+@login_required
+def add_comment(request, post_slug):
+    post = BlogPost.objects.filter(is_published=True, slug=post_slug).first()
+    if not post:
+        return HttpResponseNotFound()
+    redirect_resp = redirect(reverse('post', kwargs={'post_slug': post.slug}))
+    content = request.POST.get('content')
+    content = str(content).strip()
+    if not content:
+        return redirect_resp
+    Comment.objects.create(content=content, posted_by=request.user, blog_post=post)
+    return redirect_resp
+
 
 
 def enter_password(request, post_slug):

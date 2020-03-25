@@ -1,5 +1,14 @@
 {% extends 'common/base.html' %}
 {% load i18n %}
+{% block head_extra %}
+{{ block.super }}
+<style>
+textarea {
+resize: none
+}
+</style>
+{% endblock %}
+
 {% block title %}{{ post.title }} |{% endblock %}
 {% block body %}
     {{ block.super }}
@@ -28,6 +37,23 @@
                 /
             {% endif %}
         {% endfor %}]
+        </div>
+        <h3>{% trans 'Add a comment(login needed)' %} </h3>
+        <form class="pure-form" method='POST' action='{% url "add-comment" post.original.slug %}'>
+            <fieldset class="pure-group">
+                <textarea class="pure-input-1-2" placeholder="{% trans "hmm, what's on your mind?" %}" name='content'></textarea>
+            </fieldset>
+            <button type="submit" class="pure-button pure-input-1-2">{% trans 'Comment!' %}</button>
+        </form>
+        <h3>{% trans 'Comments' %}</h3>
+        <div class="general-board">
+            <div class='comment'>
+                who
+                <span style='color: #33cccc'> {% trans 'says' %}</span>
+                fuck you!
+                <br>
+                <p>{% trans 'at' %} now</p>
+            </div>
         </div>
     </div>
 {% endblock %}

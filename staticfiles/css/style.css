@@ -17,7 +17,10 @@ hr {
     color: #00ff00;
     text-decoration: none;
 }
-
+.comment {
+    border: 1px solid #33cccc;
+    width: 80%
+}
 .article-img {
     width: 90%;
     height: auto;

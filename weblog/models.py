@@ -1,5 +1,6 @@
 import os
 import markdown
+from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
@@ -8,7 +9,7 @@ from django.utils.translation import get_language
 from django.utils import translation
 from django.conf import settings
 from django.template.loader import get_template
-from utils.models import Language
+from utils.models import Language, DateTimeMixin
 from utils.utils.passhash_tools import get_passhash
 from utils.utils.misc import slugify, ObjectDict
 
@@ -117,6 +118,14 @@ class BlogPost(models.Model):
             return 'en'
         else:
             return self.language.language_code
+
+class Comment(DateTimeMixin):
+    blog_post = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='comments')
+    content = models.TextField()
+    posted_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    parent_comment = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='replies')
+    def __str__(self):
+        return self.posted_by.username + ' says ' + self.content + ' at ' + str(self.created) + ' on ' + self.blog_post.slug
 
 
 @receiver(pre_save, sender=BlogPost)
