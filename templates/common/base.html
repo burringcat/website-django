@@ -14,7 +14,7 @@
 </head>
 <body style="background: url({% block body_bg_url %}'{% url "random-bg" %}'{% endblock %}) no-repeat center center fixed;   -webkit-background-size: cover;  -moz-background-size: cover;  -o-background-size: cover;  background-size: cover;">
 {% block top_bar_prepend %}
-{% include 'common/top_bar_login_empty.html' %}
+{% include 'common/top_bar_login.html' %}
 {% endblock %}
 {% block top_bar %}
 {% include 'common/top_bar.html' %}

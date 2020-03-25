@@ -1,4 +1,5 @@
 {% load i18n %}
+{% if settings.WVR_AUTH_GITHUB_ID and settings.WVR_AUTH_GITHUB_SECRET %}
 <div class="top-bar">
 {% if not request.user.is_anonymous %}
 {% trans 'Welcome, ' %} {{request.user}}! <a href="{% url 'auth-logout' %}">Logout</a>
@@ -6,5 +7,4 @@
 <a href="{% url 'auth-github' %}">{% trans 'Login with Github' %} </a>
 {% endif %}
 </div>
-
-
+{% endif %}

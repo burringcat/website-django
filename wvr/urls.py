@@ -29,4 +29,5 @@ urlpatterns = [
     path('about/', include('about_me.urls')),
     path('go/', include('shortener.urls')),
     path('f1l3/', include('f1l3.urls')),
+    path('auth/', include('wvr_auth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
