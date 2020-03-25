@@ -41,19 +41,24 @@ resize: none
         <h3>{% trans 'Add a comment(login needed)' %} </h3>
         <form class="pure-form" method='POST' action='{% url "add-comment" post.original.slug %}'>
             <fieldset class="pure-group">
-                <textarea class="pure-input-1-2" placeholder="{% trans "hmm, what's on your mind?" %}" name='content'></textarea>
+                <textarea class="pure-input-3-4" placeholder="{% trans "hmm, what's on your mind?" %}" name='content'></textarea>
             </fieldset>
-            <button type="submit" class="pure-button pure-input-1-2">{% trans 'Comment!' %}</button>
+            <button type="submit" class="pure-button pure-input-2-4">{% trans 'Comment!' %}</button>
         </form>
         <h3>{% trans 'Comments' %}</h3>
         <div class="general-board">
+            {% for c in post.original.comments.all %}
             <div class='comment'>
-                who
-                <span style='color: #33cccc'> {% trans 'says' %}</span>
-                fuck you!
+                {{ c.posted_by }}
+                <span style='color: #33cccc'>{% trans 'says' %}</span>
+                {{ c.content }}
                 <br>
-                <p>{% trans 'at' %} now</p>
+                <p><span style='color: #33cccc'>{% trans 'at' %}</span> {{ c.created }} </p>
+                {#<br>#}
+                {#<a class='comment-reply-btn' href='asdas'>{% trans 'Reply' %}</a>#}
             </div>
-        </div>
+            <br>
+            {% endfor %}
+       </div>
     </div>
 {% endblock %}
