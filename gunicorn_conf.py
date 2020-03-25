@@ -1,3 +1,3 @@
 import gunicorn
 
-gunicorn.SERVER_SOFTWARE = 'your mom'
+gunicorn.SERVER_SOFTWARE = 'thy mom'
