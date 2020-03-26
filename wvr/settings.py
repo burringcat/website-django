@@ -165,6 +165,7 @@ CONFIGURABLES = ('use_translation', 'country_redirect')
 
 BLOG_POST_EDITOR_WIDGET = 'utils/widgets/text_input_with_blob_image.html'
 UTILS_BACKGROUND_PATH = os.path.join(BASE_DIR, 'utils/background_images/')
+UTILS_BACKGROUND_ENABLED = True
 UTILS_PUBLIC_UTILS = (
     #  url names/view names
     'ping',

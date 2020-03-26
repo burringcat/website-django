@@ -12,7 +12,7 @@
     {% block head_extra %}
     {% endblock %}
 </head>
-<body style="background: url({% block body_bg_url %}'{% url "random-bg" %}'{% endblock %}) no-repeat center center fixed;   -webkit-background-size: cover;  -moz-background-size: cover;  -o-background-size: cover;  background-size: cover;">
+<body {% if settings.UTILS_BACKGROUND_ENABLED %} style="background: url({% block body_bg_url %}'{% url "random-bg" %}'{% endblock %}) no-repeat center center fixed;   -webkit-background-size: cover;  -moz-background-size: cover;  -o-background-size: cover;  background-size: cover;"{% else %}style="background: #000"{% endif %}>
 {% block top_bar_prepend %}
 {% include 'common/top_bar_login.html' %}
 {% endblock %}
