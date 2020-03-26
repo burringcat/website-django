@@ -8,7 +8,7 @@ from weblog.models import BlogPostField
 class PortfolioProject(DateTimeMixin):
     cover_static_url = models.TextField()
     category = models.TextField()
-    article = models.BlogPostField()
+    article = BlogPostField()
 
     @property
     def cover_url(self):
