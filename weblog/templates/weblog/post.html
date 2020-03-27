@@ -53,7 +53,9 @@ resize: none
         <div class="general-board">
             {% for c in post.original.comments.all %}
             {% if c.parent_comment is None %}
+            <div style='width: 80%;'>
             {% include "weblog/post_comment.html" with c=c %}
+            </div>
             {% endif %}
             <br>
             {% endfor %}
