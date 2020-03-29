@@ -9,6 +9,8 @@ from django.http import StreamingHttpResponse
 from django.utils.translation import get_language, activate
 from utils.utils.misc import md2h5
 
+from .models import PortfolioProject
+
 # Create your views here.
 def get_cv_html(lang_code=None):
     if lang_code in settings.LANGUAGES_DICT.keys():
@@ -58,3 +60,6 @@ def about_me(request):
     aboutme_html = md2h5(aboutme_md)
     return render(request, 'about_me/aboutme.html', {'aboutme_html': aboutme_html})
 
+def portfolio(request):
+    portfolio_projects = PortfolioProject.objects.all()
+    return render(request, 'about_me/portfolio.html', {'portfolio_projects': portfolio_projects})

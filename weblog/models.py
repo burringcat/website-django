@@ -89,6 +89,7 @@ class BlogPost(models.Model):
     topic = models.ManyToManyField(Topic, blank=True, related_name='blog_posts')
     blog = models.ForeignKey(Blog, on_delete=models.SET_NULL, null=True)
     language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True, blank=True)
+    allow_comments = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.blog) + ':' + self.title

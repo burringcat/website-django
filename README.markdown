@@ -14,6 +14,8 @@ daphne -b 127.0.0.1 -p 8000 wvr.asgi:application
 ```
 ## Roadmap
 * Add expiration and admin features to F1L3
+* Re-enable csrf middleware
+
 
 # Bugs
-* csrf middleware
+* ~~csrf middleware~~

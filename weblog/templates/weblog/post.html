@@ -38,6 +38,7 @@ resize: none
             {% endif %}
         {% endfor %}]
         </div>
+        {% if post.original.allow_comments %}
         {% if not request.user.is_anonymous %}
         <h3>{% trans 'Add a comment' %} </h3>
         <form class="pure-form" method='POST' action='{% url "add-comment" post.original.slug %}'>
@@ -60,5 +61,6 @@ resize: none
             <br>
             {% endfor %}
        </div>
+       {% endif %}
     </div>
     {% endblock %}

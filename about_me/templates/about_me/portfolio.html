@@ -1,0 +1,57 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans 'Portfolio' %}|{% endblock %}
+{% block head_extra %}
+    <style>
+        body {
+            background-color: black;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h1, h2, h3, h4, h5 {
+            color: #00ff00;
+        }
+
+        a {
+            text-decoration: none;
+            color: #33cccc;
+        }
+
+        .portfolio-project {
+            border: 1px solid #33cccc;
+        }
+        a.portfolio-detail {
+            display: block;
+            text: center;
+        }
+    </style>
+{% endblock %}
+{% block top_bar_prepend %}
+{% endblock %}
+{% block body %}
+    {{ block.super }}
+    <br>
+    <div class="general-board article">
+        {% for p in portfolio_projects %}
+            <div class="portfolio-project">
+                {% if p.title %}
+                <h2>{{ p.title }} {% if p.category %} [ {{ p.category }} ] {% endif %}</h2>
+                {% endif %}
+            <div class="pure-g">
+                <div class="pure-u-14-24">
+                    <img class="pure-img" src="{{ p.cover_url }}" alt="" width="100%">
+                    {% if p.article %} <a class="pure-button portfolio-detail" href="{% url 'post' p.article.slug %}">{% trans 'See More' %}</a> {% endif %}
+                </div>
+                <div class="pure-u-10-24">
+                    {{ p.description_rendered| safe }}
+                    <br>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

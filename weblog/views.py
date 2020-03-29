@@ -56,7 +56,7 @@ def post(request, post_slug):
 
 @login_required
 def add_comment(request, post_slug):
-    post = BlogPost.objects.filter(is_published=True, slug=post_slug).first()
+    post = BlogPost.objects.filter(allow_comments=True, is_published=True, slug=post_slug).first()
     if not post:
         return HttpResponseNotFound('404 post not found')
     redirect_resp = redirect(reverse('post', kwargs={'post_slug': post.slug}))
