@@ -9,3 +9,7 @@ wvr/pluto
 wvr/local_settings/local.py
 media/
 !media/.gitkeep
+!migrations/__init.py
+migrations
+
+
