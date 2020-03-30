@@ -193,7 +193,11 @@ ABOUT_ME_CV_PATHS = (
     ('en', os.path.join(BASE_DIR, 'about_me/templates/about_me/cv.md')),
 )
 ABOUT_ME_CV_PATHS_DICT = dict(ABOUT_ME_CV_PATHS)
+ABOUT_ME_CV_CONTEXT = {
+}
+
 ABOUT_ME_MARKDOWN = os.path.join(BASE_DIR, 'about_me/templates/about_me/empty.md')
+
 ABOUT_ME_AUDIO_URL = 'https://misc.0u0.fun/audios/cs_italy.m4a'
 
 

@@ -18,10 +18,9 @@ def get_cv_html(lang_code=None):
     path = settings.ABOUT_ME_CV_PATHS_DICT.get(get_language() or 'en')
     with open(path) as f:
         cv_md = f.read()
-    cv_html = md2h5(cv_md,
-                        context={
-                            'gpg_url': static('abraham@odinfinch.xyz.pgp')
-                        })
+    context = settings.ABOUT_ME_CV_CONTEXT
+    if not context: context = {}
+    cv_html = md2h5(cv_md, context=context)
     return cv_html
 
 def cv(request):
