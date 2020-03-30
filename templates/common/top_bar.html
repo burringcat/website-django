@@ -36,6 +36,8 @@
     {% endfor %}
     <a href="{% url 'portfolio' %}">{% trans 'Portfolio' %} </a>
     /
+    <a href="{% url "cv" %}">{% trans 'CV' %}</a>
+    /
     <a href="{% url 'about-me' %}">{% trans 'About' %} </a>
     {% if request.user.is_superuser %}
     /

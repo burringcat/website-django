@@ -1,6 +1,7 @@
+from urllib.parse import urljoin
 from io import BytesIO
 import weasyprint
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.conf import settings
 from django.core.files.base import File
@@ -15,10 +16,18 @@ from .models import PortfolioProject
 def get_cv_html(lang_code=None):
     if lang_code in settings.LANGUAGES_DICT.keys():
         activate(lang_code)
-    path = settings.ABOUT_ME_CV_PATHS_DICT.get(get_language() or 'en')
+    lang = get_language() or 'en'
+    path = dict(settings.ABOUT_ME_CV_PATHS).get(lang)
+    if not path:
+        return str()
     with open(path) as f:
         cv_md = f.read()
-    context = settings.ABOUT_ME_CV_CONTEXT
+    context = {
+        "pdf_url": f"{urljoin(settings.PRIMARY_HOST_URL, reverse('cv-pdf'))}?lang={lang}",
+    }
+    custom_context = settings.ABOUT_ME_CV_CONTEXT
+    context.update({
+    })
     if not context: context = {}
     cv_html = md2h5(cv_md, context=context)
     return cv_html

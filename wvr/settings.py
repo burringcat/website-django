@@ -147,7 +147,7 @@ BLOG_AUTO_TRANSLATE = False
 WEBLOG_URL = ''  # or None. if specified, the blog view will redirect to there
 ADMIN_URL = os.environ.get('WVR_ADMIN_URL', 'admin')
 PRIMARY_HOST_URL = 'https://your-host-for.website' if not DEBUG \
-    else 'http://localhost'
+    else 'http://localhost:8000'
 LANGUAGES = (
     ('en', _('English')),
 )
@@ -192,7 +192,6 @@ else:
 ABOUT_ME_CV_PATHS = (
     ('en', os.path.join(BASE_DIR, 'about_me/templates/about_me/cv.md')),
 )
-ABOUT_ME_CV_PATHS_DICT = dict(ABOUT_ME_CV_PATHS)
 ABOUT_ME_CV_CONTEXT = {
 }
 
