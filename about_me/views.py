@@ -24,6 +24,7 @@ def get_cv_html(lang_code=None):
         cv_md = f.read()
     context = {
         "pdf_url": f"{urljoin(settings.PRIMARY_HOST_URL, reverse('cv-pdf'))}?lang={lang}",
+        "website_url": f"{urljoin(settings.PRIMARY_HOST_URL, reverse('cv'))}",
     }
     custom_context = settings.ABOUT_ME_CV_CONTEXT
     context.update({

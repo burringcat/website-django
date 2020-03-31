@@ -1,21 +1,26 @@
-{% extends 'about_me/cv.html' %}
 {% load i18n %}
-
-{% block title_suffix %}
-{% trans 'My Name' %}
-{% endblock %}
-{% block top_bar_prepend %}
-{% endblock %}
-{% block top_bar %}
-{% endblock %}
-{% block head_extra %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ full_name }}</title>
     <style>
         h1 {
             text-align: center;
+        }
+        li {
+            font-size: 1.15em;
+        }
+        p {
+            font-size: 1.15em;
         }
         a {
             text-decoration: none;
             color: #0000ff;
         }
     </style>
-{% endblock %}
+</head>
+<body>
+    {{ cv_html }}
+</body>
+</html>
