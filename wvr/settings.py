@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'about_me',
     'shortener',
     'f1l3',
+    'chatbots',
 ]
 
 MIDDLEWARE = [
@@ -232,6 +233,9 @@ TOPBAR_CLOUD_SITE = ''
 TOPBAR_ABOUT_ME_CV_AND_PORTFOLIO_ENABLED = False
 TOPBAR_EXTRA_SITES = ()
 TOPBAR_EXTRA_SITES_DICT = dict(TOPBAR_EXTRA_SITES)
+
+
+CHATBOTS_TELEGRAM_TOKEN = os.environ.get('WVR_CHATBOTS_TELEGRAM_TOKEN')
 
 try:
     from wvr.local_settings.local import *

@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 jedi = "*"
 ipython = "*"
+
 [packages]
 Django = "==2.2.10"
 Markdown = "==3.1.1"
@@ -25,5 +26,6 @@ channels = "*"
 daphne = "*"
 "Twisted[tls,http2]" = "*"
 psycopg2-binary = "*"
+python-telegram-bot = "*"
 
 [requires]
