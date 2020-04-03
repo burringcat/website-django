@@ -8,6 +8,8 @@ class ShellBot(RunableBot):
         print(message_on_start)
         while True:
             user_input = input(prompt).split()
+            if not user_input:
+                continue
             cmd = user_input[0]
             if cmd in enabled_plugins.keys():
                 plugin = enabled_plugins[cmd]
