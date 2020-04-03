@@ -1,7 +1,7 @@
 from telegram.ext import CommandHandler, Updater
 from django.conf import settings
 from .common import RunableBot
-from .telegram_handlers import start_handler, yn_handler, unknown_msg_handler
+from .telegram_handlers import handlers
 class TelegramBot(RunableBot):
     bot_type = 'telegram'
     def __init__(self):
@@ -9,9 +9,8 @@ class TelegramBot(RunableBot):
     def setup(self):
         if not self.updater:
             return
-        self.updater.dispatcher.add_handler(start_handler)
-        self.updater.dispatcher.add_handler(yn_handler)
-        self.updater.dispatcher.add_handler(unknown_msg_handler)
+        for h in handlers:
+            self.updater.dispatcher.add_handler(h)
         self.updater.start_polling()
 
     def run(self, token=None):

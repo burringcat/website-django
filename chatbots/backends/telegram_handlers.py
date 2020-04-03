@@ -1,16 +1,16 @@
-from random import choice
-
 from telegram.ext import CommandHandler, MessageHandler, Filters
+from .core import get_message
 
-def on_start(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Nyaaawwn~~ Hello! I'm awake :3")
-start_handler = CommandHandler('start', on_start)
+def send_message_action(text):
+    def func(update, context):
+        if callable(text):
+            text = text()
+        context.bot.send_message(chat_id=update.effective_chat.id, text=text)
+    return func
 
-def yn(update, context):
-    yn = choice(("Yes.", "No."))
-    context.bot.send_message(chat_id=update.effective_chat.id, text=yn)
-yn_handler = CommandHandler('yn', yn)
+handlers = []
+for cmd, text in get_message.items():
+    handlers.append(CommandHandler(cmd, send_message_action(text)))
 
-def unknown(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="I'm sorry? Uhm, what did you say?")
-unknown_msg_handler = MessageHandler(Filters.command, unknown)
+unknown_msg_handler = MessageHandler(Filters.command, send_message_action(get_message['unknown']))
+handlers.append(unknown_msg_handler)

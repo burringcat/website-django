@@ -1,4 +1,4 @@
 from .common import RunableBot
 from .telegram import TelegramBot
-
-__all__ = ['RunableBot', 'TelegramBot']
+from .shell import ShellBot
+__all__ = ['RunableBot', 'TelegramBot', 'ShellBot']
