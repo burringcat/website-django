@@ -7,10 +7,18 @@ class ShellBot(RunableBot):
         prompt = ">>> "
         print(message_on_start)
         while True:
-            cmd = input(prompt).split(' ')[0]
-            text = get_message[cmd]
-            if callable(text):
-                text = text()
+            user_input = input(prompt).split()
+            cmd = user_input[0]
+            if cmd in enabled_plugins.keys():
+                plugin = enabled_plugins[cmd]
+                if len(user_input[1:]) < plugin.args:
+                    print("insufficient arguments")
+                    continue
+                text = plugin.get_message(*user_input[1:])
+            else:
+                text = get_message[cmd]
+                if callable(text):
+                    text = text()
             print(text)
 
 
