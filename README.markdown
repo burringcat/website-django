@@ -16,6 +16,9 @@ daphne -b 127.0.0.1 -p 8000 wvr.asgi:application
 * Add expiration and admin features to F1L3
 * Re-enable csrf middleware
 
+## Chat Bots
+### telegram
+[0u0 chan](https://t.me/the0u0chan_bot)
 
 # Bugs
 * ~~csrf middleware~~
