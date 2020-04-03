@@ -10,7 +10,8 @@ def send_message_action(text):
 
 handlers = []
 for cmd, text in get_message.items():
-    handlers.append(CommandHandler(cmd, send_message_action(text)))
+    action = send_message_action(text)
+    handlers.append(CommandHandler(cmd, action))
 
 unknown_msg_handler = MessageHandler(Filters.command, send_message_action(get_message['unknown']))
 handlers.append(unknown_msg_handler)
